@@ -1,0 +1,71 @@
+# Suspicious Identity Activity Patterns
+
+This document outlines suspicious authentication patterns identified during the identity compromise scenario.
+
+---
+
+## Pattern 1: Password Spraying Behavior
+
+### Description
+Multiple authentication attempts were made using a limited number of passwords across several user accounts.
+
+### Indicators
+- Repeated login failures across distinct usernames  
+- Consistent source IP address  
+- Uniform authentication method  
+
+### Risk
+This pattern indicates an attempt to discover valid credentials while avoiding account lockouts.
+
+---
+
+## Pattern 2: Authentication Success Following Failures
+
+### Description
+A successful authentication occurred after multiple failed attempts.
+
+### Indicators
+- Successful sign in from the same IP used during failures  
+- Absence of MFA challenge  
+- Normal user role access  
+
+### Risk
+Indicates potential credential compromise.
+
+---
+
+## Pattern 3: Lack of Conditional Access Enforcement
+
+### Description
+Authentication was allowed without additional verification despite abnormal behavior.
+
+### Indicators
+- No Conditional Access policy triggered  
+- No stepup authentication required  
+
+### Risk
+Increases exposure to unauthorized access and lateral movement.
+
+---
+
+## Summary
+
+| Pattern | Detection Method | Risk Level |
+| Password spraying | Sign in failure correlation | Medium |
+| Successful compromise | Login success after failures | High |
+| Missing access controls | Policy evaluation logs | Medium |
+
+---
+
+## Improvement recommendations
+
+- Implement Conditional Access based on risk level  
+- Enforce MFA for all users  
+- Monitor authentication failure patterns  
+- Create alerts for anomalous sign in behavior  
+
+---
+
+## Notes
+
+Identity based attacks often precede privilege escalation or persistence techniques. Early detection significantly reduces impact and dwell time.
